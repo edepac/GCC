@@ -19,10 +19,7 @@ public class conexionSQL {
            
             Connection connection=DriverManager.getConnection("jdbc:sqlite:C:\\Users\\AFM-ASUS-i7\\Desktop\\Informática\\Ingeniería del Software II\\Practicas\\GothamCurlingClubV3F\\GCC.sqlite");
            
-            
-            return connection;
-            
-            
+            return connection;   
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
