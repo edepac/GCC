@@ -79,22 +79,67 @@ public class Reserva extends JDialog {
 					rdbtnPista_5.setVisible(true);
 				}
 				//Posible cambio para hacer el bucle for
-//				public int devolverCalle(int pista){
-//					Connection connection=conexionSQL.dbConector();
-//					int devolver=0;
-//				try{
-//					String query="SELECT * FROM Pista WHERE IdPista='"+pista+"'";
-//					PreparedStatement pst=connection.prepareStatement(query);
-//					ResultSet rs=pst.executeQuery();
-//					devolver=rs.getInt("NumeroCalle");
-//					rs.close();
-//					pst.close();
-//					return devolver;
-//				}catch(Exception e){
-//					JOptionPane.showMessageDialog(null, e);
-//				}
-//				return devolver;
-//				}
+				/*
+				public int devolverCalle(int pista){
+					Connection connection=conexionSQL.dbConector();
+					int devolver=0;
+				try{
+					String query="SELECT * FROM Pista WHERE IdPista='"+pista+"'";
+					PreparedStatement pst=connection.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					devolver=rs.getInt("NumeroCalle");
+					rs.close();
+					pst.close();
+					return devolver;
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(null, e);
+				}
+				return devolver;
+				}
+				//Meter todo en un método y llamarlo si se cambia de pista
+				
+				public int mostrarCalles(int pista){
+					
+					rdbtnPista_1.setVisible(false);
+					rdbtnPista_2.setVisible(false);
+					rdbtnPista_3.setVisible(false);
+					rdbtnPista_4.setVisible(false);
+					rdbtnPista_5.setVisible(false);
+					rdbtnPista_6.setVisible(false);
+				
+					for (int i = 0; i < NumeroCalle; i++) {
+					
+					
+					if(i == 0){
+						rdbtnPista.setVisible(true);
+					}
+					if(i == 1){
+						rdbtnPista_1.setVisible(true);
+					}
+					if(i == 2){
+						rdbtnPista_2.setVisible(true);
+					}
+					if(i == 3){
+						rdbtnPista_3.setVisible(true);
+					}
+					if(i == 4){
+						rdbtnPista_4.setVisible(true);
+					}
+					if(i == 5){
+						rdbtnPista_5.setVisible(true);
+					}
+					if(i == 6){
+						rdbtnPista_6.setVisible(true);
+					}
+					
+					}
+				}
+				
+				
+				
+				
+				 */
+				
 			}
 		});
 		

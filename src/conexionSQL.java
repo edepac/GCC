@@ -31,7 +31,7 @@ public class conexionSQL {
         	
         	
            
-            connection = DriverManager.getConnection("jdbc:sqlserver://gcc.database.windows.net;database=GCC;user=gccadmin;password=pcZujne7;encrypt=true;trustServerCertificate=true;integratedSecurity=true;loginTimeout=30;");
+            connection = DriverManager.getConnection("jdbc:sqlserver://gcc.database.windows.net:1433;database=GCC;user=gccadmin@gcc;password=pcZujne7;encrypt=true;trustServerCertificate=false;hostNameInCertificate=ukwest1-a.control.database.windows.net;loginTimeout=30;");
             //jdbc:sqlserver://%s.database.windows.net:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
             //connection = DriverManager.getConnection("jdbc:sqlserver://51.141.8.11;database=GCC;user=gccadmin;password=pcZujne7;encrypt=true;trustServerCertificate=true;integratedSecurity=true;hostNameInCerftificate=ukwest1-a.control.database.windows.net;loginTimeout=30;");
             
@@ -39,7 +39,9 @@ public class conexionSQL {
            
             if(connection !=null){
             	System.out.println("Conexión realizada con exito");
-            }   
+            }  
+            //leonnaruto@hotmail.es
+            //4ut15m00
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
