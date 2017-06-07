@@ -40,6 +40,9 @@ public class Reserva extends JDialog {
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	JComboBox comboBox, comboBoxPista;
+	JRadioButton rdbtnPista, rdbtnPista_1, rdbtnPista_2, rdbtnPista_3, rdbtnPista_4, rdbtnPista_5;
+	
+	
 	Connection connection=conexionSQL.dbConector();
 	String Usuario=null;
 	
@@ -60,6 +63,22 @@ public class Reserva extends JDialog {
 		comboBoxPista = new JComboBox();
 		comboBoxPista.setBounds(371, 33, 145, 20);
 		contentPanel.add(comboBoxPista);
+
+		comboBoxPista.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				if(comboBoxPista.getSelectedIndex()==0){
+					rdbtnPista_4.setVisible(false);
+					rdbtnPista_5.setVisible(false);
+				}else if(comboBoxPista.getSelectedIndex()==1){
+					rdbtnPista_4.setVisible(true);
+					rdbtnPista_5.setVisible(false);
+				}else if(comboBoxPista.getSelectedIndex()==2){
+					rdbtnPista_4.setVisible(true);
+					rdbtnPista_5.setVisible(true);
+				}
+				
+			}
+		});
 		
 		comboUsuarios();
 		comboPista();
@@ -146,7 +165,7 @@ public class Reserva extends JDialog {
 			contentPanel.add(txtrDa);
 		}
 		
-		JRadioButton rdbtnPista = new JRadioButton("Calle 1");
+		rdbtnPista = new JRadioButton("Calle 1");
 		rdbtnPista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista.setBackground(new Color(135, 206, 250));
 		rdbtnPista.setSelected(true);
@@ -154,35 +173,35 @@ public class Reserva extends JDialog {
 		rdbtnPista.setBounds(8, 356, 127, 25);
 		contentPanel.add(rdbtnPista);
 		
-		JRadioButton rdbtnPista_1 = new JRadioButton("Calle 2");
+		rdbtnPista_1 = new JRadioButton("Calle 2");
 		rdbtnPista_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_1.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_1);
 		rdbtnPista_1.setBounds(8, 388, 127, 25);
 		contentPanel.add(rdbtnPista_1);
 		
-		JRadioButton rdbtnPista_2 = new JRadioButton("Calle 3");
+		rdbtnPista_2 = new JRadioButton("Calle 3");
 		rdbtnPista_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_2.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_2);
 		rdbtnPista_2.setBounds(139, 356, 127, 25);
 		contentPanel.add(rdbtnPista_2);
 		
-		JRadioButton rdbtnPista_3 = new JRadioButton("Calle 4");
+		rdbtnPista_3 = new JRadioButton("Calle 4");
 		rdbtnPista_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_3.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_3);
 		rdbtnPista_3.setBounds(139, 388, 127, 25);
 		contentPanel.add(rdbtnPista_3);
 		
-		JRadioButton rdbtnPista_4 = new JRadioButton("Calle 5");
+		rdbtnPista_4 = new JRadioButton("Calle 5");
 		rdbtnPista_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_4.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_4);
 		rdbtnPista_4.setBounds(270, 356, 127, 25);
 		contentPanel.add(rdbtnPista_4);
 		
-		JRadioButton rdbtnPista_5 = new JRadioButton("Calle 6");
+		rdbtnPista_5 = new JRadioButton("Calle 6");
 		rdbtnPista_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_5.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_5);
@@ -193,16 +212,6 @@ public class Reserva extends JDialog {
 		calendar.getDayChooser().setBackground(new Color(135, 206, 250));
 		calendar.setBounds(30, 110, 345, 200);
 		contentPanel.add(calendar);
-		
-//		comboBoxPista.addItemListener(new ItemListener() {
-//			public void itemStateChanged(ItemEvent arg0) {
-//				int numPistaSelec = comboBoxPista.getSelectedIndex();
-//				
-//				if(numPistaSelec == 1){
-//					rdbtnPista_5.setVisible(false);
-//				}
-//			}
-//		});
 		
 		{
 			JPanel buttonPane = new JPanel();
