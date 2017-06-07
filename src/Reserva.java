@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -17,6 +18,9 @@ import javax.swing.JOptionPane;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import com.toedter.calendar.JCalendar;
+
+import net.proteanit.sql.DbUtils;
+
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,7 +43,7 @@ public class Reserva extends JDialog {
 	private final JLabel label = DefaultComponentFactory.getInstance().createTitle("New JGoodies title");
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	JComboBox comboBox, comboBoxPista;
+	JComboBox<String> comboBox, comboBoxPista;
 	JRadioButton rdbtnPista, rdbtnPista_1, rdbtnPista_2, rdbtnPista_3, rdbtnPista_4, rdbtnPista_5;
 	
 	
@@ -55,96 +59,34 @@ public class Reserva extends JDialog {
 	public Reserva(){
 		
 		iniciar();
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.setBackground(new Color(135, 206, 250));
 		comboBox.setBounds(104, 32, 162, 22);
 		setResizable(false);
 		
-		comboBoxPista = new JComboBox();
+		comboBoxPista = new JComboBox<String>();
 		comboBoxPista.setBounds(371, 33, 145, 20);
-		contentPanel.add(comboBoxPista);
-
+		contentPanel.add(comboBoxPista);	
+		
 		comboBoxPista.addItemListener(new ItemListener() {
-			
-			//Chanchullazo
 			public void itemStateChanged(ItemEvent arg0) {
-				if(comboBoxPista.getSelectedIndex()==0){
-					rdbtnPista_4.setVisible(false);
-					rdbtnPista_5.setVisible(false);
-				}else if(comboBoxPista.getSelectedIndex()==1){
-					rdbtnPista_4.setVisible(true);
-					rdbtnPista_5.setVisible(false);
-				}else if(comboBoxPista.getSelectedIndex()==2){
-					rdbtnPista_4.setVisible(true);
-					rdbtnPista_5.setVisible(true);
-				}
-				//Posible cambio para hacer el bucle for
-				/*
-				public int devolverCalle(int pista){
-					Connection connection=conexionSQL.dbConector();
-					int devolver=0;
-				try{
-					String query="SELECT * FROM Pista WHERE IdPista='"+pista+"'";
-					PreparedStatement pst=connection.prepareStatement(query);
-					ResultSet rs=pst.executeQuery();
-					devolver=rs.getInt("NumeroCalle");
-					rs.close();
-					pst.close();
-					return devolver;
-				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, e);
-				}
-				return devolver;
-				}
-				//Meter todo en un método y llamarlo si se cambia de pista
+				JTable tablaPista = new JTable();
+				tablaPista.setModel(DbUtils.resultSetToTableModel(consultaPista()));
+				int row;
+				int numCalles;
 				
-				public int mostrarCalles(int pista){
-					
-					rdbtnPista_1.setVisible(false);
-					rdbtnPista_2.setVisible(false);
-					rdbtnPista_3.setVisible(false);
-					rdbtnPista_4.setVisible(false);
-					rdbtnPista_5.setVisible(false);
-					rdbtnPista_6.setVisible(false);
-				
-					for (int i = 0; i < NumeroCalle; i++) {
-					
-					
-					if(i == 0){
-						rdbtnPista.setVisible(true);
-					}
-					if(i == 1){
-						rdbtnPista_1.setVisible(true);
-					}
-					if(i == 2){
-						rdbtnPista_2.setVisible(true);
-					}
-					if(i == 3){
-						rdbtnPista_3.setVisible(true);
-					}
-					if(i == 4){
-						rdbtnPista_4.setVisible(true);
-					}
-					if(i == 5){
-						rdbtnPista_5.setVisible(true);
-					}
-					if(i == 6){
-						rdbtnPista_6.setVisible(true);
-					}
-					
-					}
-				}
-				
-				
-				
-				
-				 */
+				row = comboBoxPista.getSelectedIndex();
+				numCalles = (int) tablaPista.getValueAt(row, 1);
+				mostrarCalles(numCalles);
 				
 			}
 		});
 		
 		comboUsuarios();
 		comboPista();
+			
+		
+		
 		contentPanel.setBackground(new Color(135, 206, 250));
 		contentPanel.add(comboBox);
 		
@@ -275,6 +217,7 @@ public class Reserva extends JDialog {
 		calendar.getDayChooser().setBackground(new Color(135, 206, 250));
 		calendar.setBounds(30, 110, 345, 200);
 		contentPanel.add(calendar);
+		
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -479,6 +422,73 @@ public class Reserva extends JDialog {
 			e.printStackTrace();
 		}
 		setLocationRelativeTo(null);
+	}
+	
+	public int devolverNumCalles(int pista){
+		Connection connection=conexionSQL.dbConector();
+		int numeroDeCallesPista=0;
+			try{
+				String query="SELECT * FROM Pista WHERE IdPista='"+pista+"'";
+				PreparedStatement pst=connection.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				numeroDeCallesPista=rs.getInt("NumeroCalle");
+				rs.close();
+				pst.close();
+				return numeroDeCallesPista;
+			}catch(Exception e){
+				JOptionPane.showMessageDialog(null, e);
+			}
+		return numeroDeCallesPista;
+	}
+	
+	public void mostrarCalles(int numCalles){
+		
+		rdbtnPista.setVisible(false);
+		rdbtnPista_1.setVisible(false);
+		rdbtnPista_2.setVisible(false);
+		rdbtnPista_3.setVisible(false);
+		rdbtnPista_4.setVisible(false);
+		rdbtnPista_5.setVisible(false);
+	
+		for (int i = 0; i < numCalles; i++) {
+			
+			if(i == 0){
+				rdbtnPista.setVisible(true);
+			}else
+			if(i == 1){
+				rdbtnPista_1.setVisible(true);
+			}else
+			if(i == 2){
+				rdbtnPista_2.setVisible(true);
+			}else
+			if(i == 3){
+				rdbtnPista_3.setVisible(true);
+			}else
+			if(i == 4){
+				rdbtnPista_4.setVisible(true);
+			}else
+			if(i == 5){
+				rdbtnPista_5.setVisible(true);
+			}
+		
+		}
+	}
+	
+	public ResultSet consultaPista(){
+
+		try{
+			String query="SELECT * FROM Pista";
+			PreparedStatement pst=connection.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+
+			
+			return rs;
+		}catch(Exception e){
+			e.printStackTrace();
+
+			
+			return null;
+		}
 	}
 	
 	

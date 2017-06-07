@@ -36,12 +36,11 @@ public class conexionSQL {
             //connection = DriverManager.getConnection("jdbc:sqlserver://51.141.8.11;database=GCC;user=gccadmin;password=pcZujne7;encrypt=true;trustServerCertificate=true;integratedSecurity=true;hostNameInCerftificate=ukwest1-a.control.database.windows.net;loginTimeout=30;");
             
             //Nuestro certificado es ukwest1-a.control.database.windows.net
-           
-            if(connection !=null){
-            	System.out.println("Conexión realizada con exito");
-            }  
-            //leonnaruto@hotmail.es
-            //4ut15m00
+//           
+//            if(connection !=null){
+//            	System.out.println("Conexión realizada con exito");
+//            }  
+
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
