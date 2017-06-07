@@ -176,7 +176,6 @@ public class Reserva extends JDialog {
 		rdbtnPista_3.setBounds(139, 388, 127, 25);
 		contentPanel.add(rdbtnPista_3);
 		
-		
 		JRadioButton rdbtnPista_4 = new JRadioButton("Calle 5");
 		rdbtnPista_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_4.setBackground(new Color(135, 206, 250));
@@ -196,15 +195,15 @@ public class Reserva extends JDialog {
 		calendar.setBounds(30, 110, 345, 200);
 		contentPanel.add(calendar);
 		
-		comboBoxPista.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				int numPistaSelec = comboBoxPista.getSelectedIndex();
-				
-				if(numPistaSelec == 1){
-					rdbtnPista_5.setVisible(false);
-				}
-			}
-		});
+//		comboBoxPista.addItemListener(new ItemListener() {
+//			public void itemStateChanged(ItemEvent arg0) {
+//				int numPistaSelec = comboBoxPista.getSelectedIndex();
+//				
+//				if(numPistaSelec == 1){
+//					rdbtnPista_5.setVisible(false);
+//				}
+//			}
+//		});
 		
 		{
 			JPanel buttonPane = new JPanel();
