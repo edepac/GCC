@@ -290,14 +290,19 @@ public class Reserva extends JDialog {
 								mes2=12;
 							}
 						
+							JTable tablaPista = new JTable();
+							tablaPista.setModel(DbUtils.resultSetToTableModel(consultaPista()));
+							int numPista;
 							
+							numPista = comboBoxPista.getSelectedIndex();
 							
+													
 							int day=calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
 							int month=calendar.getCalendar().get(Calendar.MONTH);
 							month=month+1;
 							int year=calendar.getCalendar().get(Calendar.YEAR);
 							
-							
+							//HAcer aqui el JText para mostrar disponibilidad de pistas
 							
 							String fecha=day+"/"+month+"/"+year;
 							if(!validarReserva(fecha, numeroCalle, horarioSelec)){
@@ -307,7 +312,7 @@ public class Reserva extends JDialog {
 							}
 							else {
 								
-									Reservar(fecha,numeroCalle,horarioSelec);
+									Reservar(fecha,numeroCalle,horarioSelec, numPista);
 								
 								dispose();
 							}
@@ -334,7 +339,7 @@ public class Reserva extends JDialog {
 		}
 	}
 	
-	public void Reservar(String fecha, String numP, String horario){
+	public void Reservar(String fecha, String numC, String horario, int numP){
 		
 		String user;
 		if(Usuario==null){
@@ -345,12 +350,14 @@ public class Reserva extends JDialog {
 		}
 		
 		try{
-			String query="insert into Reservas (Usuario, Fecha, NumeroCalle, Horario) values (?,?,?,?)";
+			String query="insert into Reservas (Usuario, Fecha, NumeroCalle, Horario, IdPista) values (?,?,?,?,?)";
 			PreparedStatement pst=connection.prepareStatement(query);
 			pst.setString(1, user);
 			pst.setString(2, fecha);
-			pst.setString(3, numP);
+			pst.setString(3, numC);
 			pst.setString(4, horario);
+			pst.setInt(5, numP+1);
+			
 
 			pst.execute();
 			
@@ -424,22 +431,6 @@ public class Reserva extends JDialog {
 		setLocationRelativeTo(null);
 	}
 	
-	public int devolverNumCalles(int pista){
-		Connection connection=conexionSQL.dbConector();
-		int numeroDeCallesPista=0;
-			try{
-				String query="SELECT * FROM Pista WHERE IdPista='"+pista+"'";
-				PreparedStatement pst=connection.prepareStatement(query);
-				ResultSet rs=pst.executeQuery();
-				numeroDeCallesPista=rs.getInt("NumeroCalle");
-				rs.close();
-				pst.close();
-				return numeroDeCallesPista;
-			}catch(Exception e){
-				JOptionPane.showMessageDialog(null, e);
-			}
-		return numeroDeCallesPista;
-	}
 	
 	public void mostrarCalles(int numCalles){
 		
