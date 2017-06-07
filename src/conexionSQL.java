@@ -28,14 +28,14 @@ public class conexionSQL {
     	Connection connection = null;
         
         try{
-        	String hostName="gcc";
-        	String dbName ="GCC";
-        	String user = "gccadmin";
-        	String password = "pcZujne7";
-        	String connectionUrl = String.format("jdbc:sqlserver://%s.database.windows.net;database=%s;user=%s;password=%s;", hostName, dbName, user, password);
+        	
         	
            
-            connection = DriverManager.getConnection(connectionUrl);
+            connection = DriverManager.getConnection("jdbc:sqlserver://gcc.database.windows.net;database=GCC;user=gccadmin;password=pcZujne7;encrypt=true;trustServerCertificate=true;integratedSecurity=true;loginTimeout=30;");
+            //jdbc:sqlserver://%s.database.windows.net:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+            //connection = DriverManager.getConnection("jdbc:sqlserver://51.141.8.11;database=GCC;user=gccadmin;password=pcZujne7;encrypt=true;trustServerCertificate=true;integratedSecurity=true;hostNameInCerftificate=ukwest1-a.control.database.windows.net;loginTimeout=30;");
+            
+            //Nuestro certificado es ukwest1-a.control.database.windows.net
            
             if(connection !=null){
             	System.out.println("Conexión realizada con exito");
