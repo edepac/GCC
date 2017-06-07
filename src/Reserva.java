@@ -107,7 +107,6 @@ public class Reserva extends JDialog {
 		contentPanel.add(lblPista);
 	}
 
-
 	public void iniciar(){
 
 		
