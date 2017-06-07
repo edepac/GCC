@@ -1,30 +1,55 @@
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.*;
 
 import javax.swing.*;
 
 public class conexionSQL {
-    Connection connection=null;
+	private static conexionSQL instance = null;
+    private Connection conexion=null;
   
+    private conexionSQL(){}
     
-    public static Connection dbConector(){
+    public static conexionSQL getInstance(){
+    	if(instance==null){
+    		instance=new conexionSQL();
+    	}
+    	return instance;
+    }
+    
+    public Connection getConnection(){
+    	if(conexion==null){
+    		conexion=dbConector();
+    	}
+    	return conexion;
+    }
+    
+    static Connection dbConector(){
+    	
+    	Connection connection = null;
         
         try{
-            Class.forName("org.sqlite.JDBC");
+        	String hostName="gcc";
+        	String dbName ="GCC";
+        	String user = "gccadmin";
+        	String password = "pcZujne7";
+        	String connectionUrl = String.format("jdbc:sqlserver://%s.database.windows.net;database=%s;user=%s;password=%s;", hostName, dbName, user, password);
+        	
            
-            Connection connection=DriverManager.getConnection("jdbc:sqlite:C:\\Users\\AFM-ASUS-i7\\Desktop\\Informática\\Ingeniería del Software II\\Practicas\\GothamCurlingClubV3F\\GCC.sqlite");
+            connection = DriverManager.getConnection(connectionUrl);
            
-            return connection;   
+            if(connection !=null){
+            	System.out.println("Conexión realizada con exito");
+            }   
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
             return null;
         }
+        
+        return connection;
     }    
 
 }
+
+//SALVAVIDAS
+//SALVAVIDAS

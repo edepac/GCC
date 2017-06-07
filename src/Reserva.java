@@ -65,6 +65,8 @@ public class Reserva extends JDialog {
 		contentPanel.add(comboBoxPista);
 
 		comboBoxPista.addItemListener(new ItemListener() {
+			
+			//Chanchullazo
 			public void itemStateChanged(ItemEvent arg0) {
 				if(comboBoxPista.getSelectedIndex()==0){
 					rdbtnPista_4.setVisible(false);
@@ -76,7 +78,23 @@ public class Reserva extends JDialog {
 					rdbtnPista_4.setVisible(true);
 					rdbtnPista_5.setVisible(true);
 				}
-				
+				//Posible cambio para hacer el bucle for
+//				public int devolverCalle(int pista){
+//					Connection connection=conexionSQL.dbConector();
+//					int devolver=0;
+//				try{
+//					String query="SELECT * FROM Pista WHERE IdPista='"+pista+"'";
+//					PreparedStatement pst=connection.prepareStatement(query);
+//					ResultSet rs=pst.executeQuery();
+//					devolver=rs.getInt("NumeroCalle");
+//					rs.close();
+//					pst.close();
+//					return devolver;
+//				}catch(Exception e){
+//					JOptionPane.showMessageDialog(null, e);
+//				}
+//				return devolver;
+//				}
 			}
 		});
 		
@@ -420,6 +438,6 @@ public class Reserva extends JDialog {
 	
 	
 	
-	
+	//SALVAVIDAS
 	
 }
