@@ -46,6 +46,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class Reserva extends JDialog {
 
@@ -60,6 +62,9 @@ public class Reserva extends JDialog {
 	JTextArea textArea;
 	
 	JScrollPane scrollPane;
+	
+	JCheckBox chckbxEntrenador, chckbxPartido;
+	JSpinner spinner, spinner_1, spinner_2;
 	
 	
 	
@@ -137,6 +142,58 @@ public class Reserva extends JDialog {
 		lblParaEstaFecha.setForeground(new Color(0, 0, 139));
 		lblParaEstaFecha.setBounds(402, 92, 150, 14);
 		contentPanel.add(lblParaEstaFecha);
+		
+		chckbxEntrenador = new JCheckBox("Entrenador");
+		chckbxEntrenador.setBounds(8, 457, 97, 23);
+		chckbxEntrenador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxEntrenador.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxEntrenador);
+		
+		chckbxPartido = new JCheckBox("Partido");
+		chckbxPartido.setBounds(139, 457, 97, 23);
+		chckbxPartido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxPartido.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxPartido);
+		
+		JLabel lblAlquiler = new JLabel("ALQUILER:");
+		lblAlquiler.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAlquiler.setBounds(443, 337, 97, 25);
+		contentPanel.add(lblAlquiler);
+		
+		JLabel label_1 = new JLabel("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+		label_1.setBounds(0, 436, 628, 14);
+		contentPanel.add(label_1);
+		
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner.setBounds(402, 371, 29, 20);
+		contentPanel.add(spinner);
+		
+		JLabel lblCasco = new JLabel("Casco");
+		lblCasco.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCasco.setBounds(433, 369, 54, 20);
+		contentPanel.add(lblCasco);
+		
+		spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner_1.setBounds(402, 403, 29, 20);
+		contentPanel.add(spinner_1);
+		
+		JLabel lblEscoba = new JLabel("Escoba");
+		lblEscoba.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEscoba.setBounds(433, 406, 46, 14);
+		contentPanel.add(lblEscoba);
+		
+		spinner_2 = new JSpinner();
+		spinner_2.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner_2.setBounds(519, 371, 29, 20);
+		contentPanel.add(spinner_2);
+		
+		JLabel lblSlider = new JLabel("Slider");
+		lblSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSlider.setBounds(550, 372, 58, 14);
+		contentPanel.add(lblSlider);
+		
 	}
 	
 	public Reserva(){
@@ -226,31 +283,13 @@ public class Reserva extends JDialog {
 		lblParaEstaFecha.setBounds(402, 89, 150, 18);
 		contentPanel.add(lblParaEstaFecha);
 		
-		JCheckBox chckbxCasco = new JCheckBox("Casco");
-		chckbxCasco.setBounds(399, 370, 97, 23);
-		chckbxCasco.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxCasco.setBackground(new Color(135, 206, 250));
-		contentPanel.add(chckbxCasco);
-		
-		JCheckBox chckbxSlider = new JCheckBox("Slider");
-		chckbxSlider.setBounds(515, 370, 97, 23);
-		chckbxSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxSlider.setBackground(new Color(135, 206, 250));
-		contentPanel.add(chckbxSlider);
-		
-		JCheckBox chckbxEscoba = new JCheckBox("Escoba");
-		chckbxEscoba.setBounds(399, 402, 97, 23);
-		chckbxEscoba.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxEscoba.setBackground(new Color(135, 206, 250));
-		contentPanel.add(chckbxEscoba);
-		
-		JCheckBox chckbxEntrenador = new JCheckBox("Entrenador");
+		chckbxEntrenador = new JCheckBox("Entrenador");
 		chckbxEntrenador.setBounds(8, 457, 97, 23);
 		chckbxEntrenador.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxEntrenador.setBackground(new Color(135, 206, 250));
 		contentPanel.add(chckbxEntrenador);
 		
-		JCheckBox chckbxPartido = new JCheckBox("Partido");
+		chckbxPartido = new JCheckBox("Partido");
 		chckbxPartido.setBounds(139, 457, 97, 23);
 		chckbxPartido.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		chckbxPartido.setBackground(new Color(135, 206, 250));
@@ -264,6 +303,36 @@ public class Reserva extends JDialog {
 		JLabel label_1 = new JLabel("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
 		label_1.setBounds(0, 436, 628, 14);
 		contentPanel.add(label_1);
+		
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner.setBounds(402, 371, 29, 20);
+		contentPanel.add(spinner);
+		
+		JLabel lblCasco = new JLabel("Casco");
+		lblCasco.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCasco.setBounds(433, 369, 54, 20);
+		contentPanel.add(lblCasco);
+		
+		spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner_1.setBounds(402, 403, 29, 20);
+		contentPanel.add(spinner_1);
+		
+		JLabel lblEscoba = new JLabel("Escoba");
+		lblEscoba.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEscoba.setBounds(433, 406, 46, 14);
+		contentPanel.add(lblEscoba);
+		
+		spinner_2 = new JSpinner();
+		spinner_2.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner_2.setBounds(519, 371, 29, 20);
+		contentPanel.add(spinner_2);
+		
+		JLabel lblSlider = new JLabel("Slider");
+		lblSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSlider.setBounds(550, 372, 58, 14);
+		contentPanel.add(lblSlider);
 		
 		
 		
@@ -443,8 +512,23 @@ public class Reserva extends JDialog {
 							month=month+1;
 							int year=calendar.getCalendar().get(Calendar.YEAR);
 							
-							//HAcer aqui el JText para mostrar disponibilidad de pistas
 							
+							int entrenadorSel=0, partidoSel=0, cascos, sliders, escobas;
+							//HAcer aqui el JText para mostrar disponibilidad de pistas
+							if(chckbxEntrenador.isSelected()){
+								entrenadorSel=1;
+							}
+							
+							if(chckbxPartido.isSelected()){
+								partidoSel=1;
+							}
+							
+							cascos  = (int) spinner.getValue();
+							escobas = (int) spinner_1.getValue();
+							sliders = (int) spinner_2.getValue();
+							
+							
+						
 							String fecha=day+"/"+month+"/"+year;
 							if(!validarReserva(fecha, numeroCalle, horarioSelec, numPista)){
 								JOptionPane.showMessageDialog(null, "La pista en ese momento se encuentra reservada");
@@ -453,7 +537,7 @@ public class Reserva extends JDialog {
 							}
 							else {
 								
-									Reservar(fecha,numeroCalle,horarioSelec, numPista);
+									Reservar(fecha,numeroCalle,horarioSelec, numPista, entrenadorSel, partidoSel, cascos, escobas, sliders);
 								
 								dispose();
 							}
@@ -522,7 +606,7 @@ public class Reserva extends JDialog {
 		}
 	}
 	
-	public void Reservar(String fecha, String numC, String horario, String numP){
+	public void Reservar(String fecha, String numC, String horario, String numP, int mister, int partidillo, int casco, int escoba, int slider){
 		
 		String user;
 		if(Usuario==null){
@@ -533,13 +617,18 @@ public class Reserva extends JDialog {
 		}
 		
 		try{
-			String query="insert into Reservas (Usuario, Fecha, NumeroCalle, Horario, IdPista) values (?,?,?,?,?)";
+			String query="insert into Reservas (Usuario, Fecha, NumeroCalle, Horario, IdPista, Entrenador, IdPArtido, Casco, Slider, Escoba) values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pst=connection.prepareStatement(query);
 			pst.setString(1, user);
 			pst.setString(2, fecha);
 			pst.setString(3, numC);
 			pst.setString(4, horario);
 			pst.setString(5, numP);
+			pst.setInt(6, mister);
+			pst.setInt(7, partidillo);
+			pst.setInt(8, casco);
+			pst.setInt(9, slider);
+			pst.setInt(10, escoba);
 			
 
 			pst.execute();
