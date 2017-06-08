@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextArea;
@@ -39,6 +40,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import javax.swing.JScrollBar;
+import javax.swing.JTextField;
 
 public class Reserva extends JDialog {
 
@@ -50,7 +53,9 @@ public class Reserva extends JDialog {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	JComboBox<String> comboBox, comboBoxPista;
 	JRadioButton rdbtnPista, rdbtnPista_1, rdbtnPista_2, rdbtnPista_3, rdbtnPista_4, rdbtnPista_5;
-	JTextPane textPane;
+	JTextArea textArea;
+	
+	JScrollPane scrollPane;
 	
 	
 	Connection connection=conexionSQL.dbConector();
@@ -115,9 +120,10 @@ public class Reserva extends JDialog {
 		lblPista.setBounds(328, 36, 46, 14);
 		contentPanel.add(lblPista);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(415, 110, 181, 206);
-		contentPanel.add(textPane);
+		textArea = new JTextArea();
+		scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(402, 110, 192, 200);
+		contentPanel.add(scrollPane);
 	}
 	
 	public Reserva(){
@@ -194,9 +200,13 @@ public class Reserva extends JDialog {
 		lblPista.setBounds(328, 36, 46, 14);
 		contentPanel.add(lblPista);
 		
-		textPane = new JTextPane();
-		textPane.setBounds(415, 110, 181, 206);
-		contentPanel.add(textPane);
+		textArea = new JTextArea();
+		scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(402, 110, 192, 200);
+		contentPanel.add(scrollPane);
+		
+		
+		
 		
 		
 		
@@ -285,28 +295,6 @@ public class Reserva extends JDialog {
 		contentPanel.add(rdbtnPista_5);
 		
 		JCalendar calendar = new JCalendar();
-		calendar.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent arg0) {
-				int day = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
-				int month = calendar.getCalendar().get(Calendar.MONTH);
-				int year = calendar.getCalendar().get(Calendar.YEAR);
-				
-				String fechaComp=day+"/"+month+"/"+year;
-				
-				JTable tablaPista = new JTable();
-				tablaPista.setModel(DbUtils.resultSetToTableModel(consultaReservas()));
-				for (int i = 0; i < 100; i++) {
-					for (int j = 0; j < 1; j++) {
-						//row = comboBoxPista.getSelectedIndex();
-						//numCalles = (int) tablaPista.getValueAt(row, 1);
-					}
-				}
-				
-				if(calendar.getCalendar().get(Calendar.DAY_OF_MONTH)==12){
-					textPane.setText("Los siguientes campos estan reservados:");
-				}
-			}
-		});
 		calendar.getDayChooser().setBackground(new Color(135, 206, 250));
 		calendar.setBounds(30, 110, 345, 200);
 		contentPanel.add(calendar);
@@ -429,6 +417,48 @@ public class Reserva extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			calendar.addPropertyChangeListener(new PropertyChangeListener() {
+				public void propertyChange(PropertyChangeEvent arg0) {
+					int day = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
+					int month = calendar.getCalendar().get(Calendar.MONTH)+1;
+					int year = calendar.getCalendar().get(Calendar.YEAR);
+					
+					String fechaComp=day+"/"+month+"/"+year;
+					
+					JTable tablaReservas = new JTable();
+					tablaReservas.setModel(DbUtils.resultSetToTableModel(consultaReservas()));
+					
+					JTable tablaPista2 = new JTable();
+					tablaPista2.setModel(DbUtils.resultSetToTableModel(consultaPista()));
+					
+					String fechaDB;
+					String pistaDBS = null;
+					
+					textArea.setText("");
+					
+					for (int i = 0; i < tablaReservas.getRowCount(); i++) {
+							fechaDB= (String) tablaReservas.getValueAt(i, 2);
+							if(fechaComp.equals(fechaDB)){
+								
+								int numeroCalleDB = (int) tablaReservas.getValueAt(i, 3);
+								String horaDB = (String) tablaReservas.getValueAt(i, 4);
+								int pistaDB= (int) tablaReservas.getValueAt(i, 5);
+								
+								for (int j = 0; j < tablaPista2.getRowCount(); j++) {
+									int indicePista = (int) tablaPista2.getValueAt(j, 0);
+									if(pistaDB==indicePista){
+										pistaDBS= (String) tablaPista2.getValueAt(j, 2);
+									}
+								}
+								
+								textArea.setText(textArea.getText()+"Pista: "+pistaDBS+"\n"
+										+ "Horario: "+ horaDB+"\n"
+												+ "Numero de calle: "+ numeroCalleDB+"\n\n");
+							}
+						
+					}
+				}
+			});
 		}
 	}
 	
@@ -524,6 +554,8 @@ public class Reserva extends JDialog {
 		}
 		setLocationRelativeTo(null);
 	}
+	
+	
 	
 	
 	public void mostrarCalles(int numCalles){
