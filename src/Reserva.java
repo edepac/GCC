@@ -34,6 +34,11 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JTextPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class Reserva extends JDialog {
 
@@ -45,6 +50,7 @@ public class Reserva extends JDialog {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	JComboBox<String> comboBox, comboBoxPista;
 	JRadioButton rdbtnPista, rdbtnPista_1, rdbtnPista_2, rdbtnPista_3, rdbtnPista_4, rdbtnPista_5;
+	JTextPane textPane;
 	
 	
 	Connection connection=conexionSQL.dbConector();
@@ -53,7 +59,65 @@ public class Reserva extends JDialog {
 	public Reserva(String USUARIO) {
 
 		Usuario=USUARIO;
-		iniciar();
+		iniciar();		
+		comboBoxPista = new JComboBox<String>();
+		comboBoxPista.setBounds(371, 33, 145, 20);
+		contentPanel.add(comboBoxPista);	
+		
+		comboBoxPista.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				JTable tablaPista = new JTable();
+				tablaPista.setModel(DbUtils.resultSetToTableModel(consultaPista()));
+				int row;
+				int numCalles;
+				
+				row = comboBoxPista.getSelectedIndex();
+				numCalles = (int) tablaPista.getValueAt(row, 1);
+				mostrarCalles(numCalles);
+				
+			}
+		});
+		
+		comboPista();
+		
+		
+		JButton btnAyudaReserva = new JButton();
+		btnAyudaReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		ImageIcon helpPls = new ImageIcon(getClass().getResource("Imagen5-1.png"));
+		ImageIcon helpPls1 = new ImageIcon(helpPls.getImage().getScaledInstance(40, 40, 0));
+		
+		btnAyudaReserva.setIcon(helpPls1);
+		
+		btnAyudaReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "En esta ventana se deberán seleccionar todo los campos \n"
+													+"para realizar la reserva en la fecha y lugar deseados.");
+				
+			}
+		});
+		
+		btnAyudaReserva.setOpaque(false);
+		btnAyudaReserva.setContentAreaFilled(false);
+		btnAyudaReserva.setBorderPainted(false);
+		btnAyudaReserva.setBounds(550, 39, 46, 39);
+		contentPanel.add(btnAyudaReserva);
+		
+		JLabel lblAyuda = new JLabel("Ayuda");
+		lblAyuda.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAyuda.setForeground(Color.WHITE);
+		lblAyuda.setBounds(552, 11, 56, 28);
+		contentPanel.add(lblAyuda);
+		
+		
+		JLabel lblPista = new JLabel("Pista");
+		lblPista.setBounds(328, 36, 46, 14);
+		contentPanel.add(lblPista);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(415, 110, 181, 206);
+		contentPanel.add(textPane);
 	}
 	
 	public Reserva(){
@@ -129,6 +193,13 @@ public class Reserva extends JDialog {
 		JLabel lblPista = new JLabel("Pista");
 		lblPista.setBounds(328, 36, 46, 14);
 		contentPanel.add(lblPista);
+		
+		textPane = new JTextPane();
+		textPane.setBounds(415, 110, 181, 206);
+		contentPanel.add(textPane);
+		
+		
+		
 	}
 
 	public void iniciar(){
@@ -214,6 +285,28 @@ public class Reserva extends JDialog {
 		contentPanel.add(rdbtnPista_5);
 		
 		JCalendar calendar = new JCalendar();
+		calendar.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				int day = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
+				int month = calendar.getCalendar().get(Calendar.MONTH);
+				int year = calendar.getCalendar().get(Calendar.YEAR);
+				
+				String fechaComp=day+"/"+month+"/"+year;
+				
+				JTable tablaPista = new JTable();
+				tablaPista.setModel(DbUtils.resultSetToTableModel(consultaReservas()));
+				for (int i = 0; i < 100; i++) {
+					for (int j = 0; j < 1; j++) {
+						//row = comboBoxPista.getSelectedIndex();
+						//numCalles = (int) tablaPista.getValueAt(row, 1);
+					}
+				}
+				
+				if(calendar.getCalendar().get(Calendar.DAY_OF_MONTH)==12){
+					textPane.setText("Los siguientes campos estan reservados:");
+				}
+			}
+		});
 		calendar.getDayChooser().setBackground(new Color(135, 206, 250));
 		calendar.setBounds(30, 110, 345, 200);
 		contentPanel.add(calendar);
@@ -292,10 +385,10 @@ public class Reserva extends JDialog {
 						
 							JTable tablaPista = new JTable();
 							tablaPista.setModel(DbUtils.resultSetToTableModel(consultaPista()));
-							int numPista;
+							int numPista2;
 							
-							numPista = comboBoxPista.getSelectedIndex();
-							
+							numPista2 = comboBoxPista.getSelectedIndex()+1;
+							String numPista = String.valueOf(numPista2);
 													
 							int day=calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
 							int month=calendar.getCalendar().get(Calendar.MONTH);
@@ -305,7 +398,7 @@ public class Reserva extends JDialog {
 							//HAcer aqui el JText para mostrar disponibilidad de pistas
 							
 							String fecha=day+"/"+month+"/"+year;
-							if(!validarReserva(fecha, numeroCalle, horarioSelec)){
+							if(!validarReserva(fecha, numeroCalle, horarioSelec, numPista)){
 								JOptionPane.showMessageDialog(null, "La pista en ese momento se encuentra reservada");
 							}else if(year<=Integer.parseInt(agno)  & month<=mes2 & day<=Integer.parseInt(dia)){
 								JOptionPane.showMessageDialog(null, "Fecha no válida");
@@ -339,7 +432,7 @@ public class Reserva extends JDialog {
 		}
 	}
 	
-	public void Reservar(String fecha, String numC, String horario, int numP){
+	public void Reservar(String fecha, String numC, String horario, String numP){
 		
 		String user;
 		if(Usuario==null){
@@ -356,7 +449,7 @@ public class Reserva extends JDialog {
 			pst.setString(2, fecha);
 			pst.setString(3, numC);
 			pst.setString(4, horario);
-			pst.setInt(5, numP+1);
+			pst.setString(5, numP);
 			
 
 			pst.execute();
@@ -370,11 +463,11 @@ public class Reserva extends JDialog {
 		}
 	}
 	
-	public boolean validarReserva(String fecha, String numP, String horario){
+	public boolean validarReserva(String fecha, String numC, String horario, String numP){
 		boolean libre=true;
 		
 		try{
-			String query="SELECT * FROM Reservas where Fecha='"+fecha+"' and NumeroCalle='"+numP+"' and Horario='"+horario+"'";
+			String query="SELECT * FROM Reservas WHERE Fecha='"+fecha+"' AND NumeroCalle='"+numC+"' AND Horario='"+horario+"' AND IdPista='"+numP+"'";
 			PreparedStatement pst=connection.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			
@@ -384,7 +477,8 @@ public class Reserva extends JDialog {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
+		//Salvavidas
+		//Salvavidas
 		
 		return libre;
 	}
@@ -482,8 +576,20 @@ public class Reserva extends JDialog {
 		}
 	}
 	
-	
-	
-	//SALVAVIDAS
-	
+	public ResultSet consultaReservas(){
+
+		try{
+			String query="SELECT * FROM Reservas";
+			PreparedStatement pst=connection.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+
+			
+			return rs;
+		}catch(Exception e){
+			e.printStackTrace();
+
+			
+			return null;
+		}
+	}
 }

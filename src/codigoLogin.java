@@ -36,6 +36,7 @@ public class codigoLogin {
 				}
 				
 				if(count==1){
+					JOptionPane.showMessageDialog(null, "Se ha validado correctamente.");
 					resultado=2;
 				}else if(count==0){
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña son erroneos");
