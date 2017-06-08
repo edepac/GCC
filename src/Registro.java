@@ -158,10 +158,10 @@ public class Registro extends JDialog {
 		{
 			JLabel txtrRegistro = new JLabel();
 			txtrRegistro.setForeground(new Color(255, 255, 255));
-			txtrRegistro.setFont(new Font("LCDMono2", Font.BOLD, 53));
+			txtrRegistro.setFont(new Font("Dialog", Font.BOLD, 50));
 			txtrRegistro.setBackground(SystemColor.menu);
 			txtrRegistro.setText("REGISTRO");
-			txtrRegistro.setBounds(26, 36, 243, 60);
+			txtrRegistro.setBounds(26, 36, 276, 60);
 			contentPanel.add(txtrRegistro);
 		}
 		{

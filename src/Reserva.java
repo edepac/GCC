@@ -194,6 +194,23 @@ public class Reserva extends JDialog {
 		lblSlider.setBounds(550, 372, 58, 14);
 		contentPanel.add(lblSlider);
 		
+		JButton btnPrecios = new JButton("Precios");
+		btnPrecios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JOptionPane.showMessageDialog(null, "Los precios de las reservas son: \n"
+						+ "-------------------------------------- \n"
+						+ "Reservar una calle: 100,00 € \n"
+						+ "Reservar un entrenador: 50,00 € \n"
+						+ "Reservar casco: 10,00 €/unidad \n"
+						+ "Reservar slider: 14,00 €/unidad \n"
+						+ "Reservar escoba: 15,00 €/unidad ");
+				
+			}
+		});
+		btnPrecios.setBounds(507, 459, 89, 23);
+		contentPanel.add(btnPrecios);
+		
 	}
 	
 	public Reserva(){
@@ -333,6 +350,23 @@ public class Reserva extends JDialog {
 		lblSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblSlider.setBounds(550, 372, 58, 14);
 		contentPanel.add(lblSlider);
+		
+		JButton btnPrecios = new JButton("Precios");
+		btnPrecios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JOptionPane.showMessageDialog(null, "Los precios de las reservas son: \n"
+						+ "-------------------------------------- \n"
+						+ "Reservar una calle: 100,00 € \n"
+						+ "Reservar un entrenador: 35,00 € \n"
+						+ "Reservar casco: 8,00 €/unidad \n"
+						+ "Reservar slider: 12,00 €/unidad \n"
+						+ "Reservar escoba: 14,00 €/unidad ");
+				
+			}
+		});
+		btnPrecios.setBounds(507, 459, 89, 23);
+		contentPanel.add(btnPrecios);
 		
 		
 	}
