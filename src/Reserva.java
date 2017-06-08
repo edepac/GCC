@@ -58,6 +58,7 @@ public class Reserva extends JDialog {
 	JScrollPane scrollPane;
 	
 	
+	
 	Connection connection=conexionSQL.dbConector();
 	String Usuario=null;
 	
