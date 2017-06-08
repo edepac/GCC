@@ -42,6 +42,10 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JScrollBar;
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.JSeparator;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class Reserva extends JDialog {
 
@@ -118,6 +122,8 @@ public class Reserva extends JDialog {
 		
 		
 		JLabel lblPista = new JLabel("Pista");
+		lblPista.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPista.setForeground(new Color(0, 0, 139));
 		lblPista.setBounds(328, 36, 46, 14);
 		contentPanel.add(lblPista);
 		
@@ -125,6 +131,12 @@ public class Reserva extends JDialog {
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(402, 110, 192, 200);
 		contentPanel.add(scrollPane);
+		
+		JLabel lblParaEstaFecha = new JLabel("Campos reservados:");
+		lblParaEstaFecha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblParaEstaFecha.setForeground(new Color(0, 0, 139));
+		lblParaEstaFecha.setBounds(402, 92, 150, 14);
+		contentPanel.add(lblParaEstaFecha);
 	}
 	
 	public Reserva(){
@@ -198,6 +210,8 @@ public class Reserva extends JDialog {
 		
 		
 		JLabel lblPista = new JLabel("Pista");
+		lblPista.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPista.setForeground(new Color(0, 0, 139));
 		lblPista.setBounds(328, 36, 46, 14);
 		contentPanel.add(lblPista);
 		
@@ -205,6 +219,51 @@ public class Reserva extends JDialog {
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(402, 110, 192, 200);
 		contentPanel.add(scrollPane);
+		
+		JLabel lblParaEstaFecha = new JLabel("Campos reservados:");
+		lblParaEstaFecha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblParaEstaFecha.setForeground(new Color(0, 0, 139));
+		lblParaEstaFecha.setBounds(402, 89, 150, 18);
+		contentPanel.add(lblParaEstaFecha);
+		
+		JCheckBox chckbxCasco = new JCheckBox("Casco");
+		chckbxCasco.setBounds(399, 370, 97, 23);
+		chckbxCasco.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxCasco.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxCasco);
+		
+		JCheckBox chckbxSlider = new JCheckBox("Slider");
+		chckbxSlider.setBounds(515, 370, 97, 23);
+		chckbxSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxSlider.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxSlider);
+		
+		JCheckBox chckbxEscoba = new JCheckBox("Escoba");
+		chckbxEscoba.setBounds(399, 402, 97, 23);
+		chckbxEscoba.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxEscoba.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxEscoba);
+		
+		JCheckBox chckbxEntrenador = new JCheckBox("Entrenador");
+		chckbxEntrenador.setBounds(8, 457, 97, 23);
+		chckbxEntrenador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxEntrenador.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxEntrenador);
+		
+		JCheckBox chckbxPartido = new JCheckBox("Partido");
+		chckbxPartido.setBounds(139, 457, 97, 23);
+		chckbxPartido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxPartido.setBackground(new Color(135, 206, 250));
+		contentPanel.add(chckbxPartido);
+		
+		JLabel lblAlquiler = new JLabel("ALQUILER:");
+		lblAlquiler.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAlquiler.setBounds(443, 337, 97, 25);
+		contentPanel.add(lblAlquiler);
+		
+		JLabel label_1 = new JLabel("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+		label_1.setBounds(0, 436, 628, 14);
+		contentPanel.add(label_1);
 		
 		
 		
@@ -219,7 +278,7 @@ public class Reserva extends JDialog {
 		contentPanel.setBackground(new Color(135, 206, 250));
 		
 		setTitle("Reserva");
-		setBounds (100, 100, 624, 527);
+		setBounds (100, 100, 624, 565);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -233,14 +292,14 @@ public class Reserva extends JDialog {
 		rdbtnManana.setBackground(new Color(135, 206, 250));
 		rdbtnManana.setSelected(true);
 		buttonGroup.add(rdbtnManana);
-		rdbtnManana.setBounds(40, 326, 127, 25);
+		rdbtnManana.setBounds(40, 337, 127, 25);
 		contentPanel.add(rdbtnManana);
 		{
 			JRadioButton rdbtnTarde = new JRadioButton("Tarde");
 			rdbtnTarde.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			rdbtnTarde.setBackground(new Color(135, 206, 250));
 			buttonGroup.add(rdbtnTarde);
-			rdbtnTarde.setBounds(198, 326, 127, 25);
+			rdbtnTarde.setBounds(198, 337, 127, 25);
 			contentPanel.add(rdbtnTarde);
 		}
 		{
@@ -257,42 +316,42 @@ public class Reserva extends JDialog {
 		rdbtnPista.setBackground(new Color(135, 206, 250));
 		rdbtnPista.setSelected(true);
 		buttonGroup_1.add(rdbtnPista);
-		rdbtnPista.setBounds(8, 356, 127, 25);
+		rdbtnPista.setBounds(8, 367, 127, 25);
 		contentPanel.add(rdbtnPista);
 		
 		rdbtnPista_1 = new JRadioButton("Calle 2");
 		rdbtnPista_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_1.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_1);
-		rdbtnPista_1.setBounds(8, 388, 127, 25);
+		rdbtnPista_1.setBounds(8, 399, 127, 25);
 		contentPanel.add(rdbtnPista_1);
 		
 		rdbtnPista_2 = new JRadioButton("Calle 3");
 		rdbtnPista_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_2.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_2);
-		rdbtnPista_2.setBounds(139, 356, 127, 25);
+		rdbtnPista_2.setBounds(139, 367, 127, 25);
 		contentPanel.add(rdbtnPista_2);
 		
 		rdbtnPista_3 = new JRadioButton("Calle 4");
 		rdbtnPista_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_3.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_3);
-		rdbtnPista_3.setBounds(139, 388, 127, 25);
+		rdbtnPista_3.setBounds(139, 399, 127, 25);
 		contentPanel.add(rdbtnPista_3);
 		
 		rdbtnPista_4 = new JRadioButton("Calle 5");
 		rdbtnPista_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_4.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_4);
-		rdbtnPista_4.setBounds(270, 356, 127, 25);
+		rdbtnPista_4.setBounds(270, 367, 127, 25);
 		contentPanel.add(rdbtnPista_4);
 		
 		rdbtnPista_5 = new JRadioButton("Calle 6");
 		rdbtnPista_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		rdbtnPista_5.setBackground(new Color(135, 206, 250));
 		buttonGroup_1.add(rdbtnPista_5);
-		rdbtnPista_5.setBounds(270, 388, 127, 25);
+		rdbtnPista_5.setBounds(270, 399, 127, 25);
 		contentPanel.add(rdbtnPista_5);
 		
 		JCalendar calendar = new JCalendar();
