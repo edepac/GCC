@@ -164,13 +164,13 @@ public class Logging extends JFrame {
 		btnAyudaLogin.setOpaque(false);
 		btnAyudaLogin.setContentAreaFilled(false);
 		btnAyudaLogin.setBorderPainted(false);
-		btnAyudaLogin.setBounds(332, 151, 68, 62);
+		btnAyudaLogin.setBounds(335, 184, 68, 62);
 		contentPane.add(btnAyudaLogin);
 		
 		JLabel lblAyuda = new JLabel("Ayuda");
 		lblAyuda.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblAyuda.setForeground(Color.WHITE);
-		lblAyuda.setBounds(345, 129, 57, 38);
+		lblAyuda.setBounds(348, 162, 57, 38);
 		contentPane.add(lblAyuda);
 		
 		botonLogo = new JButton();
@@ -188,6 +188,10 @@ public class Logging extends JFrame {
 		contentPane.add(botonLogo);
 		
 		btnRecuperarContrasea = new JButton("Recuperar Contrase\u00F1a");
+		btnRecuperarContrasea.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnRecuperarContrasea.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRecuperarContrasea.setForeground(new Color(255, 255, 255));
+		btnRecuperarContrasea.setBackground(new Color(0, 0, 0));
 		btnRecuperarContrasea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//RecuperarPass passRecovery = new RecuperarPass();
@@ -222,7 +226,7 @@ public class Logging extends JFrame {
 				
 			}
 		});
-		btnRecuperarContrasea.setBounds(134, 212, 148, 23);
+		btnRecuperarContrasea.setBounds(114, 210, 187, 23);
 		contentPane.add(btnRecuperarContrasea);
 		
 		

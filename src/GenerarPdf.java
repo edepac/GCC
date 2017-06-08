@@ -47,6 +47,9 @@ public class GenerarPdf {
         document.add((fecha));
         }
         
+        
+        
+        
        
         
         

@@ -133,6 +133,7 @@ public class Reserva extends JDialog {
 		contentPanel.add(lblPista);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(402, 110, 192, 200);
 		contentPanel.add(scrollPane);
@@ -195,6 +196,10 @@ public class Reserva extends JDialog {
 		contentPanel.add(lblSlider);
 		
 		JButton btnPrecios = new JButton("Precios");
+		btnPrecios.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnPrecios.setBackground(Color.BLACK);
+		btnPrecios.setForeground(Color.WHITE);
+		btnPrecios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPrecios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -208,7 +213,7 @@ public class Reserva extends JDialog {
 				
 			}
 		});
-		btnPrecios.setBounds(507, 459, 89, 23);
+		btnPrecios.setBounds(426, 459, 182, 23);
 		contentPanel.add(btnPrecios);
 		
 	}
@@ -290,6 +295,7 @@ public class Reserva extends JDialog {
 		contentPanel.add(lblPista);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(402, 110, 192, 200);
 		contentPanel.add(scrollPane);
@@ -352,6 +358,10 @@ public class Reserva extends JDialog {
 		contentPanel.add(lblSlider);
 		
 		JButton btnPrecios = new JButton("Precios");
+		btnPrecios.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnPrecios.setBackground(Color.BLACK);
+		btnPrecios.setForeground(Color.WHITE);
+		btnPrecios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPrecios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -365,7 +375,7 @@ public class Reserva extends JDialog {
 				
 			}
 		});
-		btnPrecios.setBounds(507, 459, 89, 23);
+		btnPrecios.setBounds(426, 459, 182, 23);
 		contentPanel.add(btnPrecios);
 		
 		
