@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -15,9 +18,14 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
+
 import java.awt.Button;
 import javax.swing.JLabel;
 import java.awt.Cursor;
@@ -34,6 +42,9 @@ public class Logging extends JFrame {
 	private JButton btnAyudaLogin;
 	private JButton btnNewButton;
 	private JButton botonLogo;
+	private JButton btnRecuperarContrasea;
+	
+	Connection connection=conexionSQL.dbConector();
 
 	
 	public Logging() {
@@ -44,7 +55,7 @@ public class Logging extends JFrame {
 		
 		setTitle("Login");;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 453, 344);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.textHighlight);
@@ -65,7 +76,7 @@ public class Logging extends JFrame {
 				reg.setVisible(true);
 			}
 		});
-		btnReg.setBounds(12, 215, 408, 25);
+		btnReg.setBounds(12, 257, 408, 25);
 		contentPane.add(btnReg);
 		
 		JButton btnRegistrarse = new JButton("Login");
@@ -171,15 +182,70 @@ public class Logging extends JFrame {
 		botonLogo.setIcon(helperino1);
 		botonLogo.setContentAreaFilled(false);
 		botonLogo.setBorderPainted(false);
-		botonLogo.setBounds(292, 35, 136, 125);
+		botonLogo.setBounds(355, 13, 136, 125);
 		
 		botonLogo.setBounds(313, 13, 107, 99);
 		contentPane.add(botonLogo);
+		
+		btnRecuperarContrasea = new JButton("Recuperar Contrase\u00F1a");
+		btnRecuperarContrasea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//RecuperarPass passRecovery = new RecuperarPass();
+				
+				JFrame frame = new JFrame();
+				String panelcito = JOptionPane.showInputDialog(frame, "Escriba su correo electrónico para enviarle su contraseña:");
+				
+				String correo = panelcito;
+				String correoAux=null;
+				String contraseñaDevuelta=null;
+				
+				JTable tablaClientes = new JTable();
+				tablaClientes.setModel(DbUtils.resultSetToTableModel(consultaClientes()));
+				int cont=0;
+				
+				for(int i=0; i< tablaClientes.getRowCount();i++){
+					correoAux = (String) tablaClientes.getValueAt(i, 6);
+					if(correoAux.equals(correo)){
+						contraseñaDevuelta = (String) tablaClientes.getValueAt(i, 2);
+						cont++;
+						
+					}
+					
+				}
+				
+				if(cont==0){
+					JOptionPane.showMessageDialog(null, "El correo introducido no se encuentra registrado.");
+				}else if(cont==1){
+					RecuperarPass.EnviarCorreo(correo, contraseñaDevuelta);
+				}
+				
+				
+			}
+		});
+		btnRecuperarContrasea.setBounds(134, 212, 148, 23);
+		contentPane.add(btnRecuperarContrasea);
 		
 		
 		
 		
 		setLocationRelativeTo(null);
+	}
+	public ResultSet consultaClientes(){
+
+		try{
+			
+			String query="SELECT * FROM Cliente";
+			PreparedStatement pst=connection.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+
+			
+			return rs;
+		}catch(Exception e){
+			e.printStackTrace();
+
+			
+			return null;
+		}
 	}
 	}
 

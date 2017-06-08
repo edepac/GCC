@@ -309,7 +309,7 @@ public class Admin extends JFrame {
 		JButton btnPrevisionIngresos = new JButton("Prevision Ingresos");
 		btnPrevisionIngresos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GenerarPdf pdf = new GenerarPdf();
+				//GenerarPdf pdf = new GenerarPdf();
 				JFrame frame = new JFrame();
 				JFrame frame1 = new JFrame();
 				String panelcito = JOptionPane.showInputDialog(frame, "Mes:");
