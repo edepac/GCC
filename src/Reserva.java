@@ -335,10 +335,6 @@ public class Reserva extends JDialog {
 		contentPanel.add(lblSlider);
 		
 		
-		
-		
-		
-		
 	}
 
 	public void iniciar(){

@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="C:/Users/AFM-ASUS-i7/Desktop/Informática/Ingeniería del Software II/Practicas/GothamCurlingClubV3F/SQL/jcalendar-1.1.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/AFM-ASUS-i7/Desktop/Informática/Ingeniería del Software II/Practicas/GothamCurlingClubV3F/SQL/rs2xml.jar"/>
 	<classpathentry kind="lib" path="C:/Users/AFM-ASUS-i7/Downloads/sqljdbc4-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AFM-ASUS-i7/workspace/GothamCurlingClubV3F/iText-5.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

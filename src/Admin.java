@@ -32,8 +32,13 @@ import javax.swing.border.EtchedBorder;
 
 import org.omg.CORBA.portable.InputStream;
 
+import com.itextpdf.text.DocumentException;
+
 import java.awt.Cursor;
 import java.awt.Color;
+
+
+
 
 public class Admin extends JFrame {
 
@@ -300,6 +305,50 @@ public class Admin extends JFrame {
 		lblBackup.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblBackup.setBounds(1030, 50, 118, 35);
 		contentPane.add(lblBackup);
+		
+		JButton btnPrevisionIngresos = new JButton("Prevision Ingresos");
+		btnPrevisionIngresos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GenerarPdf pdf = new GenerarPdf();
+				JFrame frame = new JFrame();
+				JFrame frame1 = new JFrame();
+				String panelcito = JOptionPane.showInputDialog(frame, "Mes:");
+				String panelcito2 = JOptionPane.showInputDialog(frame1, "Año:");
+				
+				int mes = Integer.parseInt(panelcito);
+				int año = Integer.parseInt(panelcito2);
+				
+				int pistas=0, entrenadores=0, cascos=0, sliders=0, escobas=0;
+				
+				JTable tablaReservas = new JTable();
+				tablaReservas.setModel(DbUtils.resultSetToTableModel(consultaReservas()));
+				
+				String fecha1=null;
+				for(int j=1; j<32;j++){
+				for (int i = 0; i < tablaReservas.getRowCount(); i++) {
+					fecha1=j+"/"+mes+"/"+año;
+					String fechaDB= (String) tablaReservas.getValueAt(i, 2);
+					if(fecha1.equals(fechaDB)){
+						pistas=pistas+ 1;
+						entrenadores = entrenadores + (int) tablaReservas.getValueAt(i, 7);
+						cascos = cascos + (int) tablaReservas.getValueAt(i, 8);
+						sliders = sliders + (int) tablaReservas.getValueAt(i, 9);
+						escobas = escobas + (int) tablaReservas.getValueAt(i, 10);
+					}
+				}
+				}
+				
+				
+				try {
+					GenerarPdf.hazPDF(mes, año, pistas, entrenadores, cascos, sliders, escobas);
+				} catch (DocumentException | IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		btnPrevisionIngresos.setBounds(782, 59, 89, 23);
+		contentPane.add(btnPrevisionIngresos);
 		setLocationRelativeTo(null);
 	}
 	
@@ -370,5 +419,8 @@ public class Admin extends JFrame {
 			e.printStackTrace();
 		}
 	}
-		}
+	
+	
+	
+}
 
