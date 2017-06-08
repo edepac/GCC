@@ -51,7 +51,7 @@ public class Admin extends JFrame {
 	public Admin() {
 		setTitle("Ventana Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1285, 595);
+		setBounds(100, 100, 1429, 595);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.textHighlight);
@@ -74,7 +74,7 @@ public class Admin extends JFrame {
 				
 			}
 		});
-		btnRealizarReserva.setBounds(689, 458, 152, 25);
+		btnRealizarReserva.setBounds(796, 458, 152, 25);
 		contentPane.add(btnRealizarReserva);
 		
 		JButton btnGestionarReserva = new JButton("Gestionar reserva");
@@ -110,7 +110,7 @@ public class Admin extends JFrame {
 				
 			}
 		});
-		btnGestionarReserva.setBounds(1095, 458, 152, 25);
+		btnGestionarReserva.setBounds(1202, 458, 152, 25);
 		contentPane.add(btnGestionarReserva);
 		
 		JButton btnEliminarReserva = new JButton("Eliminar reserva");
@@ -142,7 +142,7 @@ public class Admin extends JFrame {
 				}
 			}
 		});
-		btnEliminarReserva.setBounds(896, 458, 152, 25);
+		btnEliminarReserva.setBounds(1003, 458, 152, 25);
 		contentPane.add(btnEliminarReserva);
 		
 		JLabel txtrListaDeReservas = new JLabel();
@@ -150,7 +150,7 @@ public class Admin extends JFrame {
 		txtrListaDeReservas.setBackground(SystemColor.menu);
 		txtrListaDeReservas.setFont(new Font("Monospaced", Font.BOLD, 25));
 		txtrListaDeReservas.setText("Lista de reservas");
-		txtrListaDeReservas.setBounds(678, 138, 342, 32);
+		txtrListaDeReservas.setBounds(745, 137, 654, 32);
 		contentPane.add(txtrListaDeReservas);
 		
 		JLabel txtrListaDeClientes = new JLabel();
@@ -163,7 +163,7 @@ public class Admin extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		scrollPane.setBounds(678, 182, 589, 241);
+		scrollPane.setBounds(745, 181, 654, 241);
 		contentPane.add(scrollPane);
 		tablaRes = new JTable();
 		scrollPane.setViewportView(tablaRes);
@@ -171,7 +171,7 @@ public class Admin extends JFrame {
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setViewportBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		scrollPane_1.setBounds(23, 181, 614, 241);
+		scrollPane_1.setBounds(23, 181, 671, 241);
 		contentPane.add(scrollPane_1);
 		tablaCli = new JTable();
 		scrollPane_1.setViewportView(tablaCli);
@@ -215,7 +215,7 @@ public class Admin extends JFrame {
 				
 			}
 		});
-		btnEliminarCliente.setBounds(197, 458, 172, 25);
+		btnEliminarCliente.setBounds(287, 458, 172, 25);
 		contentPane.add(btnEliminarCliente);
 		
 		JButton btnAyudaAdministrador = new JButton();
@@ -242,14 +242,14 @@ public class Admin extends JFrame {
 		btnAyudaAdministrador.setOpaque(false);
 		btnAyudaAdministrador.setContentAreaFilled(false);
 		btnAyudaAdministrador.setBorderPainted(false);
-		btnAyudaAdministrador.setBounds(1210, 34, 65, 71);
+		btnAyudaAdministrador.setBounds(1317, 34, 65, 71);
 		//btnAyudaAdministrador.setBounds(509, 18, 162, 25);
 		contentPane.add(btnAyudaAdministrador);
 		
 		JLabel lblAyuda = new JLabel("Ayuda");
 		lblAyuda.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblAyuda.setForeground(Color.WHITE);
-		lblAyuda.setBounds(1216, 14, 58, 38);
+		lblAyuda.setBounds(1323, 14, 58, 38);
 		contentPane.add(lblAyuda);
 		
 		JButton btnbackup = new JButton("");
@@ -288,7 +288,7 @@ public class Admin extends JFrame {
 		btnbackup.setOpaque(false);
 		btnbackup.setContentAreaFilled(false);
 		btnbackup.setBorderPainted(false);
-		btnbackup.setBounds(1143, 34, 57, 66);
+		btnbackup.setBounds(1250, 34, 57, 66);
 		contentPane.add(btnbackup);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -303,17 +303,24 @@ public class Admin extends JFrame {
 		
 		JLabel lblBackup = new JLabel("Back Up --->");
 		lblBackup.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblBackup.setBounds(1030, 50, 118, 35);
+		lblBackup.setBounds(1137, 50, 118, 35);
 		contentPane.add(lblBackup);
 		
 		JButton btnPrevisionIngresos = new JButton("Prevision Ingresos");
+		btnPrevisionIngresos.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnPrevisionIngresos.setForeground(Color.WHITE);
+		btnPrevisionIngresos.setBackground(Color.BLACK);
+		btnPrevisionIngresos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPrevisionIngresos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) throws NumberFormatException {
 				//GenerarPdf pdf = new GenerarPdf();
+				
+				try{
 				JFrame frame = new JFrame();
 				JFrame frame1 = new JFrame();
 				String panelcito = JOptionPane.showInputDialog(frame, "Mes:");
 				String panelcito2 = JOptionPane.showInputDialog(frame1, "Año:");
+				
 				
 				int mes = Integer.parseInt(panelcito);
 				int año = Integer.parseInt(panelcito2);
@@ -338,16 +345,21 @@ public class Admin extends JFrame {
 				}
 				}
 				
-				
 				try {
 					GenerarPdf.hazPDF(mes, año, pistas, entrenadores, cascos, sliders, escobas);
 				} catch (DocumentException | IOException e) {
 					e.printStackTrace();
 				}
+				}catch (NumberFormatException e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "No has rellenado los campos necesarios.");
+					
+				}
+			
 				
 			}
 		});
-		btnPrevisionIngresos.setBounds(782, 59, 89, 23);
+		btnPrevisionIngresos.setBounds(940, 53, 182, 32);
 		contentPane.add(btnPrevisionIngresos);
 		setLocationRelativeTo(null);
 	}

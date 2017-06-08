@@ -37,7 +37,7 @@ public class Cliente extends JFrame {
 	public Cliente(String USUARIO) {
 		Usuario=USUARIO;
 		setTitle("Ventana cliente");
-		setBounds(100, 100, 832, 576);
+		setBounds(100, 100, 973, 576);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,6 +54,7 @@ public class Cliente extends JFrame {
 		btnRealizarReserva.setBounds(56, 459, 162, 25);
 		btnRealizarReserva.setBackground(Color.BLACK);
 		btnRealizarReserva.setForeground(Color.WHITE);
+		btnRealizarReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Reserva res=new Reserva(Usuario);
@@ -65,9 +66,10 @@ public class Cliente extends JFrame {
 		
 		JButton btnGestionarReserva = new JButton("Gestionar reserva");
 		btnGestionarReserva.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnGestionarReserva.setBounds(578, 459, 162, 25);
+		btnGestionarReserva.setBounds(733, 459, 162, 25);
 		btnGestionarReserva.setBackground(Color.BLACK);
 		btnGestionarReserva.setForeground(Color.WHITE);
+		btnGestionarReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGestionarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row;
@@ -98,9 +100,10 @@ public class Cliente extends JFrame {
 		
 		JButton btnEliminarReserva = new JButton("Eliminar reserva");
 		btnEliminarReserva.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnEliminarReserva.setBounds(325, 459, 172, 25);
+		btnEliminarReserva.setBounds(382, 459, 172, 25);
 		btnEliminarReserva.setBackground(Color.BLACK);
 		btnEliminarReserva.setForeground(Color.WHITE);
+		btnEliminarReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnEliminarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row;
@@ -134,7 +137,7 @@ public class Cliente extends JFrame {
 		textArea.setBackground(SystemColor.menu);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 205, 780, 218);
+		scrollPane.setBounds(12, 205, 919, 218);
 		
 		tablaReservas = new JTable();
 		scrollPane.setViewportView(tablaReservas);
@@ -142,7 +145,7 @@ public class Cliente extends JFrame {
 		
 		JButton btnAyudaCliente = new JButton();
 		btnAyudaCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAyudaCliente.setBounds(744, 36, 48, 54);
+		btnAyudaCliente.setBounds(871, 31, 48, 54);
 		
 		ImageIcon helperino = new ImageIcon(getClass().getResource("Imagen5-1.png"));
 		ImageIcon helperino1 = new ImageIcon(helperino.getImage().getScaledInstance(40, 40, 0));
@@ -167,7 +170,7 @@ public class Cliente extends JFrame {
 		JLabel lblAyuda = new JLabel("Ayuda");
 		lblAyuda.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblAyuda.setForeground(Color.WHITE);
-		lblAyuda.setBounds(744, 16, 60, 25);
+		lblAyuda.setBounds(871, 11, 60, 25);
 		panel.add(lblAyuda);
 		panel.add(textArea);
 		panel.add(btnAyudaCliente);
